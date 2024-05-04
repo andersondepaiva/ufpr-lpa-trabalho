@@ -3,11 +3,13 @@
 library(DescTools)
 library(fdth)
 library(car)
+library(rcompanion)
 library("BSDA")
 library("onewaytests")
 library("sjPlot")
 library("tigerstats")
 library("misty")
+
 
 # Carregar salarios.RData
 load("salarios.RData")
@@ -15,14 +17,21 @@ load("salarios.RData")
 # 1 graficos e tabelas
 
 # a. Box-plot e histograma para a idade das esposas
-hist(salarios$age, breaks = "Sturges", main = "Histograma por Idade da Esposa", xlab = "Idade Esposa")
-Boxplot( ~ age, data=salarios, id=list(method="y"), 
-         ylab="Idade esposas")
+hist(salarios$age)
+plotNormalHistogram(salarios$age, prob = FALSE, 
+                    main = "Histograma por Idade da Esposa", 
+                    length = 1000 )
+
+boxplot(salarios$age, main= "Idade das esposas")
 
 # a. Box-plot e histograma para a idade dos maridos
-hist(salarios$husage, breaks = "Sturges", main = "Histograma por Idade do Marido", xlab = "Idade Marido")
-Boxplot( ~ husage, data=salarios, id=list(method="y"), 
-         ylab="Idade maridos")
+
+hist(salarios$husage)
+plotNormalHistogram(salarios$husage, prob = FALSE, 
+                    main = "Histograma por Idade do Marido", 
+                    length = 1000 )
+                    
+boxplot(salarios$husage, main= "Idade dos maridos")
 
 # b. Tabela frequencia idades esposas
 table_by_age <- fdt(salarios$age)
@@ -85,15 +94,14 @@ cat("Coeficiente de Variação:", cv_husage, "\n")
 # 3 Testes parametricos e não parametricos
 set.seed(1985)
 
-amostra <- sample_n(salarios, 5000)
-
 # Teste de normalidade Shapiro-Wilk
+amostra <- sample_n(salarios, 5000)
 with(salarios, shapiro.test(amostra$age))
 with(salarios, shapiro.test(amostra$husage))
 
 # Unpaired Test
-t_test_result <- t.test(salarios$age, salarios$husage, paired = FALSE)
-print(t_test_result)
+#t_test_result <- t.test(salarios$age, salarios$husage, paired = FALSE)
+#print(t_test_result)
 
 # Mann-Whitney
 wilcox_test_result <- wilcox.test(salarios$age, salarios$husage, exact=FALSE, conf.int=TRUE)
