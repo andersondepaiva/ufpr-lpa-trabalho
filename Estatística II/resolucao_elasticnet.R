@@ -46,22 +46,11 @@ test[,cols] = predict(pre_proc_val, test[,cols])
 summary(train)
 summary(test)
 
-#############################################################
-#                     REGRESSAO lasso                       #
-#############################################################
-
-# A regressao lasso "encolhe os valores dos coeficientes"
-
-# Vamos criar um objeto com as variaveis que usaremos no
-# modelo
 cols_reg = c('husage', 'husunion', 'husearns', 'huseduc', 
              'husblck', 'hushisp', 'hushrs', 'kidge6','age',
              'black', 'educ', 'hispanic', 'union',
              'exper', 'kidlt6', 'lwage')
 
-# Vamos gerar variaveis dummies para organizar os datasets
-# em objetos tipo matriz
-# Estamos interessados em estimar o salario-hora (lwage)
 dummies <- dummyVars(lwage ~ husage + husunion + husearns + huseduc + 
                     husblck + hushisp + hushrs + kidge6 + age + black + 
                     educ + hispanic + union + exper + kidlt6, 
@@ -72,49 +61,15 @@ test_dummies = predict(dummies, newdata = test[,cols_reg])
 print(dim(train_dummies))
 print(dim(test_dummies))
 
-# A regressao lasso eh uma extens�o da regressao linear em  
-# que a funcao perda eh alterada para minimizar a 
-# complexidade do modelo.
-# Esta mudanca eh feita ao adicionarmos um parametro de 
-# penalty igual ao quadrado dos valores dos coeficientes. 
 
-# A principal diferenca entre a regressao linear e a 
-# penalizada eh que a regressao penalizada usa um 
-# hiperparametro "lambda".
-# A funcao glmnet() executa o modelo muitas vezes para 
-# valores diferentes de lambda. 
-# Podemos automatizar esta tarefa para encontrar o melhor 
-# valor de lambda usando a funcao "cv.glmnet()".
-
-# A funcao de perda generica eh:
-# Funcao perda = MQO+lambda*soma(quadrados dos valores
-# dos coeficientes).
-# O lambda eh o parametro de penalty encontrado.
-
-# Vamos guardar a matriz de dados de treinamento das 
-# variaveis explicativas para o modelo em um objeto 
-# chamado "x"
 x = as.matrix(train_dummies)
 
-# Vamos guardar o vetor de dados de treinamento da 
-# variavel dependente para o modelo em um objeto
-# chamado "y_train"
 y_train = train$lwage
 
-# Vamos guardar a matriz de dados de teste das variaveis
-# explicativas para o modelo em um objeto chamado
-# "x_test"
 x_test = as.matrix(test_dummies)
 
-# Vamos guardar o vetor de dados de teste da variavel
-# dependente para o modelo em um objeto chamado "y_test"
 y_test = test$lwage
 
-# Vamos configurar o treinamento do modelo por 
-# cross validation, com 10 folders, 5 repeticoes
-# e busca aleatoria dos componentes das amostras
-# de treinamento, o "verboseIter" eh soh para 
-# mostrar o processamento.
 train_cont <- trainControl(method = "repeatedcv",
                            number = 10,
                            repeats = 5,
