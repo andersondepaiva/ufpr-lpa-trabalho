@@ -136,16 +136,6 @@ elastic_reg$bestTune
 # E os parametros sao:
 elastic_reg[["finalModel"]][["beta"]]
 
-# Estimando o modelo lasso
-elasticnet_model <- glmnet(x, y_train, alpha = 1, 
-                      lambda = best_lambda_elasticnet, 
-                      standardize = TRUE)
-
-# Vamos ver o resultado (valores) da estimativa 
-# (coeficientes)
-elasticnet_model[["beta"]]
-
-
 # Vamos calcular o R^2 dos valores verdadeiros e 
 # preditos conforme a seguinte funcao:
 eval_results <- function(true, predicted, df) {
