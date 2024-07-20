@@ -1,0 +1,26 @@
+LegPress;Gemeos;Afundo;Crucifixo
+LegPress;Gemeos;Agachamento
+Gemeos;LegPress;Afundo;Agachamento
+Adutor;Agachamento;LegPress;Adutor
+LegPress;Gemeos;Afundo;Bicicleta
+LegPress;Gemeos;Agachamento
+Gemeos;LegPress;Afundo;Bicicleta
+Adutor;Agachamento;LegPress;Adutor
+Extensor;AgachamentoSmith;Bicicleta;Esteira;Gemeos
+Extensor;AgachamentoSmith;Bicicleta;Esteira;LegPress
+Extensor;AgachamentoSmith;Bicicleta;Gemeos;LegPress
+Extensor;Flexor;Bicicleta;Esteira;LegPress
+Extensor;AgachamentoSmith;Gemeos;Esteira;LegPress
+Extensor;AgachamentoSmith;Bicicleta;Esteira;LegPress
+Extensor;Gemeos;Bicicleta;Esteira
+LegPress;Gemeos;Afundo;Crucifixo
+LegPress;Gemeos;Agachamento
+Gemeos;LegPress;Afundo;Agachamento
+Adutor;Agachamento;LegPress;Adutor
+Extensor;AgachamentoSmith;Bicicleta;Esteira;Gemeos
+Extensor;AgachamentoSmith;Bicicleta;Esteira;LegPress
+Extensor;AgachamentoSmith;Bicicleta;Gemeos;Afundo
+Extensor;Flexor;Bicicleta;Esteira;LegPress
+Afundo;AgachamentoSmith;Gemeos;Esteira;LegPress
+Extensor;AgachamentoSmith;Bicicleta;Esteira;LegPress
+Extensor; Gemeos;Bicicleta;Esteira;Afundo
