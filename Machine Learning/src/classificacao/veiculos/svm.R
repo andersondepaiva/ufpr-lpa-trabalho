@@ -33,8 +33,27 @@ confusionMatrix(predict.svm, as.factor(teste$tipo))
 ctrl <- trainControl(method = "cv", number = 10)
 
 set.seed(202437)
-svmCv <- train(tipo~., data=treino, method="svmRadial", trControl=ctrl)
+svmCv <- train(tipo~., data=treino, method="svmRadial",trace=FALSE, trControl=ctrl)
 svmCv
 
 predict.svmCv <- predict(svmCv, teste)
 confusionMatrix(predict.svmCv, as.factor(teste$tipo))
+
+
+######################################
+#########  Predicao Novos Casos  #####
+######################################
+
+### Leitura dos dados
+dataNovo <- read.csv("veiculos-novos.csv")
+View(dataNovo)
+
+### Remove a coluna a
+dataNovo$a <- NULL
+
+predict.svm <- predict(svm, dataNovo)
+
+dataNovo$tipo <- NULL
+
+resultado <- cbind(dataNovo, predict.svm)
+View(resultado)
