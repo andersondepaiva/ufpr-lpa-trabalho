@@ -45,7 +45,7 @@ teste <- data[-ran,]
 ### treinamento
 tuneGrid <- expand.grid(k = c(1,3,5,7,9))
 set.seed(202437)
-knn <- train(biomassa ~ ., data = treino, method = "knn",tuneGrid=tuneGrid)
+knn <- train(biomassa~., data = treino, method = "knn",tuneGrid=tuneGrid)
 knn
 
 ### Faz a predição e imprime metricas
@@ -53,3 +53,22 @@ predict.knn <- predict(knn, teste)
 
 metricas <- calcular_metricas(teste$biomassa, predict.knn)
 metricas
+
+# Grafico de resíduos
+residuals <- teste$biomassa - predict.knn
+plot(predict.knn, residuals, xlab = "Valores Preditos", ylab = "Residuais", main = "Plot Residual")
+
+#####################################
+#########  Predicao Novos Casos #####
+#####################################
+
+### Leitura dos dados
+dataNovo <- read.csv("biomassa-novos.csv")
+View(dataNovo)
+
+predict.knn <- predict(knn, dataNovo)
+
+dataNovo$biomassa <- NULL
+
+resultado <- cbind(dataNovo, predict.knn)
+View(resultado)

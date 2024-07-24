@@ -35,7 +35,6 @@ ctrl <- trainControl(method = "cv", number = 10)
 ### executa RNA com cross validation
 set.seed(202437)
 rnaCv <- train(diabetes~., data=treino, method="nnet",trace=FALSE, trControl=ctrl)
-
 rnaCv
 
 predict.rnaCv <- predict(rnaCv, teste) 

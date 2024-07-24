@@ -38,3 +38,21 @@ rfCv
 
 predict.rfCv <- predict(rfCv, teste)
 confusionMatrix(predict.rfCv, as.factor(teste$diabetes))
+
+####################################################
+#########  Predicao Novos Casos - RF Hold-out  #####
+####################################################
+
+### Leitura dos dados
+dataNovo <- read.csv("diabetes-novos.csv")
+View(dataNovo)
+
+### Remove a coluna a
+dataNovo$num <- NULL
+
+predict.rf <- predict(rf, dataNovo)
+
+dataNovo$diabetes <- NULL
+
+resultado <- cbind(dataNovo, predict.rf)
+View(resultado)

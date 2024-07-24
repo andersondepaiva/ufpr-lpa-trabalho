@@ -56,3 +56,25 @@ predict.knn <- predict(knn, teste)
 
 metricas <- calcular_metricas(teste$ChanceOfAdmit, predict.knn)
 metricas
+
+# Grafico de resíduos
+residuals <- teste$ChanceOfAdmit - predict.knn
+plot(predict.knn, residuals, xlab = "Valores Preditos", ylab = "Residuais", main = "Plot Residual")
+
+#####################################
+#########  Predicao Novos Casos #####
+#####################################
+
+### Leitura dos dados
+dataNovo <- read.csv("admissao-novo.csv")
+View(dataNovo)
+
+### Remove a coluna a
+dataNovo$num <- NULL
+
+predict.knn <- predict(knn, dataNovo)
+
+dataNovo$ChanceOfAdmit <- NULL
+
+resultado <- cbind(dataNovo, predict.knn)
+View(resultado)

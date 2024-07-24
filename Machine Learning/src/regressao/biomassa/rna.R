@@ -53,9 +53,6 @@ rna
 predicoes.rna <- predict(rna, teste)
 
 ### Mostra as métricas
-rmse(teste$biomassa, predicoes.rna)
-mae(teste$biomassa, predicoes.rna)
-
 metricas <- calcular_metricas(teste$biomassa, predicoes.rna)
 metricas
 
@@ -76,7 +73,5 @@ predicoes.rnaCv <- predict(rnaCv, teste)
 
 
 ### Mostra as métricas
-
-
 metricasCv <- calcular_metricas(teste$biomassa, predicoes.rnaCv)
 metricasCv

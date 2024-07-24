@@ -56,9 +56,6 @@ rna
 predicoes.rna <- predict(rna, teste)
 
 ### Mostra as métricas
-rmse(teste$ChanceOfAdmit, predicoes.rna)
-mae(teste$ChanceOfAdmit, predicoes.rna)
-
 metricas <- calcular_metricas(teste$ChanceOfAdmit, predicoes.rna)
 metricas
 
@@ -79,7 +76,5 @@ predicoes.rnaCv <- predict(rnaCv, teste)
 
 
 ### Mostra as métricas
-
-
 metricasCv <- calcular_metricas(teste$ChanceOfAdmit, predicoes.rnaCv)
 metricasCv
